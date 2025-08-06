@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress NavigationFile -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/userReposScreen">
+
+    <fragment
+        android:id="@+id/userReposScreen"
+        android:name="com.example.githubreposapp.ui.UserReposFragment"
+        android:label=""
+        tools:layout="@layout/fragment_user_repos">
+
+    </fragment>
+</navigation>
