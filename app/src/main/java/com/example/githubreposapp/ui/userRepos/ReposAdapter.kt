@@ -1,10 +1,11 @@
-package com.example.githubreposapp.ui
+package com.example.githubreposapp.ui.userRepos
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubreposapp.databinding.RepoItemBinding
+import com.example.githubreposapp.ui.RepoUI
 
 class ReposAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items = arrayListOf<RepoUI>()

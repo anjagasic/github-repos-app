@@ -1,10 +1,11 @@
-package com.example.githubreposapp.ui
+package com.example.githubreposapp.ui.userRepos
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -42,21 +43,45 @@ class UserReposFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
             rvRepos.addItemDecoration(dividerItemDecoration)
-        }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userReposViewModel.repos.collect { state ->
-                    when (state) {
-                        is UiState.Loading -> {}
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    userReposViewModel.repos.collect { state ->
+                        when (state) {
+                            is UiState.Loading -> {
+                                noDataView.root.isVisible = false
+                                loader.isVisible = true
+                                rvRepos.isVisible = false
+                            }
 
-                        is UiState.Success -> {
-                            reposAdapter.setRepos(state.data)
+                            is UiState.Success -> {
+                                noDataView.root.isVisible = false
+                                loader.isVisible = false
+                                rvRepos.isVisible = true
+                                reposAdapter.setRepos(state.data)
+                            }
+
+                            is UiState.Error -> {
+                                loader.isVisible = false
+                                setupNoDataView(state.message)
+                            }
                         }
-
-                        is UiState.Error -> {}
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupNoDataView(errorMessage: String? = null) {
+        binding.noDataView.root.isVisible = true
+        binding.noDataView.apply {
+            btnTryAgain.text = "Try again"
+            tvTitle.text = "Something went wrong"
+            tvErrorMessage.isVisible = errorMessage != null
+            tvErrorMessage.text = errorMessage
+
+            btnTryAgain.setOnClickListener {
+                userReposViewModel.fetchRepos()
             }
         }
     }

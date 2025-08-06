@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userReposScreen"
-        android:name="com.example.githubreposapp.ui.UserReposFragment"
+        android:name="com.example.githubreposapp.ui.userRepos.UserReposFragment"
         android:label=""
         tools:layout="@layout/fragment_user_repos">
 

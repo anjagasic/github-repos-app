@@ -1,9 +1,10 @@
-package com.example.githubreposapp.ui
+package com.example.githubreposapp.ui.userRepos
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.githubreposapp.data.mappers.toUI
 import com.example.githubreposapp.data.repository.UserReposRepository
+import com.example.githubreposapp.ui.RepoUI
 import com.example.githubreposapp.utils.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +19,7 @@ class UserReposViewModel(private val userReposRepository: UserReposRepository) :
         fetchRepos()
     }
 
-    private fun fetchRepos() {
+    fun fetchRepos() {
         viewModelScope.launch {
             _repos.value = UiState.Loading
             val result = userReposRepository.getUserRepos()
