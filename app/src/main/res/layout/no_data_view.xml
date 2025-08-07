@@ -5,8 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
-    android:paddingHorizontal="40dp"
-    tools:context=".ui.repoDetails.RepoDetailsFragment">
+    android:paddingHorizontal="40dp">
+
+    <ImageView
+        android:id="@+id/ivNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_no_data"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitle"
@@ -19,8 +29,7 @@
         app:layout_constraintBottom_toTopOf="@id/tvErrorMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/ivNoData"
         tools:text="Something went wrong, please try again" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -45,7 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#4E90F3"
         android:fontFamily="@font/inter_regular"
         android:textAppearance="@font/inter_regular"
         android:textSize="16sp"

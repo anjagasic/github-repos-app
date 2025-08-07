@@ -69,13 +69,13 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@id/tvFullName"
             app:layout_constraintTop_toBottomOf="@id/tvRepoName"
-            tools:text="Forks: 124" />
+            tools:text="124 forks" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvNumOfWatchers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:drawableStart="@drawable/ic_watchers"
             android:drawablePadding="4dp"
             android:fontFamily="@font/inter_regular"
@@ -85,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="@id/tvFullName"
             app:layout_constraintStart_toEndOf="@id/tvNumOfForks"
             app:layout_constraintTop_toTopOf="@id/tvNumOfForks"
-            tools:text="Watchers: 33" />
+            tools:text="33 watchers" />
 
         <View
             android:id="@+id/divider"
@@ -140,7 +140,7 @@
         <include
             android:id="@+id/noDataView"
             layout="@layout/no_data_view"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

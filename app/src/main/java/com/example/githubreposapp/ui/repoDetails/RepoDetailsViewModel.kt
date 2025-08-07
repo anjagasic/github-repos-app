@@ -10,7 +10,10 @@ import com.example.githubreposapp.ui.TagUI
 import com.example.githubreposapp.ui.UserUI
 import com.example.githubreposapp.utils.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class RepoDetailsViewModel(
@@ -27,13 +30,25 @@ class RepoDetailsViewModel(
     private val _userData = MutableStateFlow<UiState<UserUI>>(UiState.Loading)
     val userData: StateFlow<UiState<UserUI>> = _userData
 
+    val isLoading: StateFlow<Boolean> = combine(
+        userData,
+        repoDetails,
+        tags
+    ) { userState, repoState, tagsState ->
+        listOf(userState, repoState, tagsState).any { it is UiState.Loading }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        true
+    )
+
     init {
         fetchRepoTags()
         fetchRepoDetails()
         fetchUserData()
     }
 
-    private fun fetchRepoTags() {
+    fun fetchRepoTags() {
         viewModelScope.launch {
             _tags.value = UiState.Loading
             val result = userReposRepository.getRepoTags(repoName)

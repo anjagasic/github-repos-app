@@ -59,24 +59,28 @@ class RepoDetailsFragment : Fragment() {
                     repoDetailsViewModel.tags.collect { state ->
                         when (state) {
                             is UiState.Loading -> {
-                                noDataView.root.isVisible = false
-                                loader.isVisible = true
                                 rvTags.isVisible = false
                             }
 
                             is UiState.Success -> {
                                 rvTags.isVisible = state.data.isNotEmpty()
                                 if (state.data.isEmpty()) {
-                                    setupNoDataView()
+                                    tvTags.isVisible = false
+                                    showNoTagsView(title = "No tags for selected repository")
                                 } else {
                                     noDataView.root.isVisible = false
                                     tagsAdapter.submitList(state.data)
                                 }
-                                loader.isVisible = false
                             }
 
                             is UiState.Error -> {
-                                loader.isVisible = false
+                                tvTags.isVisible = false
+                                showNoTagsView(
+                                    title = "Something went wrong",
+                                    message = state.message,
+                                    showRetry = true,
+                                    onRetry = { repoDetailsViewModel.fetchRepoTags() }
+                                )
                             }
                         }
                     }
@@ -87,18 +91,14 @@ class RepoDetailsFragment : Fragment() {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     repoDetailsViewModel.userData.collect { state ->
                         when (state) {
-                            is UiState.Loading -> {
-                                loader.isVisible = true
-                            }
+                            is UiState.Loading -> {}
 
                             is UiState.Success -> {
-                                noDataView.root.isVisible = false
-                                loader.isVisible = false
                                 setUserData(state.data)
                             }
 
                             is UiState.Error -> {
-                                loader.isVisible = false
+                                setNoUserDataView()
                             }
                         }
                     }
@@ -109,49 +109,78 @@ class RepoDetailsFragment : Fragment() {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     repoDetailsViewModel.repoDetails.collect { state ->
                         when (state) {
-                            is UiState.Loading -> {
-                                loader.isVisible = true
-                            }
+                            is UiState.Loading -> {}
 
                             is UiState.Success -> {
-                                noDataView.root.isVisible = false
-                                loader.isVisible = false
                                 setRepoData(state.data)
                             }
 
                             is UiState.Error -> {
-                                loader.isVisible = false
+                                setNoRepoDataView()
                             }
                         }
+                    }
+                }
+            }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    repoDetailsViewModel.isLoading.collect { isLoading ->
+                        loader.isVisible = isLoading
                     }
                 }
             }
         }
     }
 
+    private fun showNoTagsView(
+        title: String,
+        message: String? = null,
+        showRetry: Boolean = false,
+        onRetry: (() -> Unit)? = null
+    ) = with(binding.noDataView) {
+        root.isVisible = true
+        tvTitle.text = title
+
+        if (!message.isNullOrBlank()) {
+            tvErrorMessage.isVisible = true
+            tvErrorMessage.text = message
+        } else {
+            tvErrorMessage.isVisible = false
+        }
+
+        if (showRetry && onRetry != null) {
+            btnTryAgain.isVisible = true
+            btnTryAgain.setOnClickListener { onRetry() }
+        } else {
+            btnTryAgain.isVisible = false
+        }
+    }
+
     private fun setUserData(data: UserUI) = with(binding) {
         tvFullName.text = data.fullName
         Glide.with(ivAvatarImage.context)
-            .load("null")
+            .load(data.avatarImage)
             .placeholder(R.drawable.ic_avatar_default)
             .error(R.drawable.ic_avatar_default)
             .into(ivAvatarImage)
     }
 
-    private fun setRepoData(data: RepoDetailsUI) = with(binding) {
-        tvRepoName.text = data.name
-        tvNumOfForks.text = "Forks: ${data.forksCount}"
-        tvNumOfWatchers.text = "Watchers: ${data.watchersCount}"
+    private fun setNoUserDataView() = with(binding){
+        tvFullName.text = "Unknown user"
+        ivAvatarImage.setImageResource(R.drawable.ic_avatar_default)
     }
 
-    private fun setupNoDataView() = with(binding) {
-        tvTags.isVisible = false
-        noDataView.root.isVisible = true
-        noDataView.apply {
-            btnTryAgain.isVisible = false
-            tvTitle.text = "No tags for selected repository"
-            tvErrorMessage.isVisible = false
-        }
+    private fun setRepoData(data: RepoDetailsUI) = with(binding) {
+        tvRepoName.text = data.name
+        tvNumOfForks.text = "${data.forksCount} forks"
+        tvNumOfWatchers.text = "${data.watchersCount} watchers"
+    }
+
+    private fun setNoRepoDataView() = with(binding) {
+        tvRepoName.text = "Unknown Repo"
+        tvNumOfForks.text = "/ forks"
+        tvNumOfWatchers.text = "/ watchers"
     }
 
     override fun onDestroyView() {
