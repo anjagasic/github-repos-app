@@ -14,9 +14,9 @@ A simple Android app built using the **Single Activity** pattern and **MVVM** ar
 
 ## Screenshots
 <p align="center">
-  <img src="screenshots/user_repo_screen.png" width="300" style="margin-right: 16;" />
+  <img src="screenshots/user_repo_screen.png" width="200" style="margin-right: 16;" />
     &nbsp;&nbsp;&nbsp;
-  <img src="screenshots/repo_details_screen.png" width="300" style="margin-right: 16;" />
+  <img src="screenshots/repo_details_screen.png" width="200" style="margin-right: 16;" />
     &nbsp;&nbsp;&nbsp;
-  <img src="screenshots/repo_details_screen_no_tags.png" width="300" />
+  <img src="screenshots/repo_details_screen_no_tags.png" width="200" />
 </p>
