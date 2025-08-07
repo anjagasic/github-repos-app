@@ -3,9 +3,9 @@ package com.example.githubreposapp.data.mappers
 import com.example.githubreposapp.data.model.RepoDetailsDto
 import com.example.githubreposapp.data.model.RepoDto
 import com.example.githubreposapp.data.model.TagDto
-import com.example.githubreposapp.ui.RepoDetailsUI
-import com.example.githubreposapp.ui.RepoUI
-import com.example.githubreposapp.ui.TagUI
+import com.example.githubreposapp.ui.common.model.RepoDetailsUI
+import com.example.githubreposapp.ui.common.model.RepoUI
+import com.example.githubreposapp.ui.common.model.TagUI
 
 fun RepoDto.toUI(): RepoUI {
     return RepoUI(

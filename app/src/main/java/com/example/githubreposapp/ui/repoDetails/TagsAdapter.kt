@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubreposapp.R
 import com.example.githubreposapp.databinding.TagItemBinding
-import com.example.githubreposapp.ui.TagUI
+import com.example.githubreposapp.ui.common.model.TagUI
 
-class TagsListAdapter : ListAdapter<TagUI, TagsListAdapter.TagViewHolder>(DiffCallback()) {
+class TagsAdapter : ListAdapter<TagUI, TagsAdapter.TagViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
         val binding = TagItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TagViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TagsListAdapter.TagViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TagsAdapter.TagViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

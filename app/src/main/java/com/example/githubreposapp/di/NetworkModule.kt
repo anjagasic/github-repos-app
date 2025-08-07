@@ -1,6 +1,6 @@
 package com.example.githubreposapp.di
 
-import com.example.githubreposapp.data.Service
+import com.example.githubreposapp.data.network.GithubApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -36,4 +36,4 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         .client(okHttpClient)
         .build()
 
-fun provideApi(retrofit: Retrofit): Service = retrofit.create(Service::class.java)
+fun provideApi(retrofit: Retrofit): GithubApiService = retrofit.create(GithubApiService::class.java)

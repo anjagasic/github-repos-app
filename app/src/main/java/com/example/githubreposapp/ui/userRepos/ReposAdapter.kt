@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubreposapp.R
 import com.example.githubreposapp.databinding.RepoItemBinding
-import com.example.githubreposapp.ui.RepoUI
+import com.example.githubreposapp.ui.common.model.RepoUI
 
 class ReposAdapter(private val onRepoClick: (String) -> Unit) :
     ListAdapter<RepoUI, ReposAdapter.RepoViewHolder>(DiffCallback()) {

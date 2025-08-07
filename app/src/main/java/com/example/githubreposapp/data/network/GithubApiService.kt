@@ -1,4 +1,4 @@
-package com.example.githubreposapp.data
+package com.example.githubreposapp.data.network
 
 import com.example.githubreposapp.data.model.RepoDetailsDto
 import com.example.githubreposapp.data.model.RepoDto
@@ -8,7 +8,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface Service {
+interface GithubApiService {
 
     @GET("users/octocat/repos")
     suspend fun getRepos(): Response<List<RepoDto>>

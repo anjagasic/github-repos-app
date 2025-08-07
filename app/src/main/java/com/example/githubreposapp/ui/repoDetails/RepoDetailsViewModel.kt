@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.githubreposapp.data.mappers.toUI
 import com.example.githubreposapp.data.repository.UserReposRepository
 import com.example.githubreposapp.data.repository.UserRepository
-import com.example.githubreposapp.ui.RepoDetailsUI
-import com.example.githubreposapp.ui.TagUI
-import com.example.githubreposapp.ui.UserUI
+import com.example.githubreposapp.ui.common.model.RepoDetailsUI
+import com.example.githubreposapp.ui.common.model.TagUI
+import com.example.githubreposapp.ui.common.model.UserUI
 import com.example.githubreposapp.utils.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

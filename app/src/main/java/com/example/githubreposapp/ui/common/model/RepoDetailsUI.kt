@@ -1,4 +1,4 @@
-package com.example.githubreposapp.ui
+package com.example.githubreposapp.ui.common.model
 
 data class RepoDetailsUI(
     val name: String,

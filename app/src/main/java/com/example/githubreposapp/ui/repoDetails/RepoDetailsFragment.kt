@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
 import com.example.githubreposapp.R
 import com.example.githubreposapp.databinding.FragmentRepoDetailsBinding
-import com.example.githubreposapp.ui.RepoDetailsUI
-import com.example.githubreposapp.ui.UserUI
+import com.example.githubreposapp.ui.common.model.RepoDetailsUI
+import com.example.githubreposapp.ui.common.model.UserUI
 import com.example.githubreposapp.utils.UiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,7 +32,7 @@ class RepoDetailsFragment : Fragment() {
         parametersOf(args.repoName)
     }
 
-    private val tagsAdapter = TagsListAdapter()
+    private val tagsAdapter = TagsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
