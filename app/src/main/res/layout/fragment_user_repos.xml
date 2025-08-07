@@ -10,16 +10,18 @@
         android:id="@+id/rvRepos"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:divider="#000000"
         android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
         android:scrollIndicators="none"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="5"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="15"
         tools:listitem="@layout/repo_item" />
 
     <ProgressBar
@@ -36,6 +38,6 @@
     <include
         android:id="@+id/noDataView"
         layout="@layout/no_data_view"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
