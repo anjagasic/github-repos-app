@@ -5,9 +5,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.example.githubreposapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,17 +23,6 @@ class MainActivity : AppCompatActivity() {
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
                 insets
             }
-
-            val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            val navController = navHostFragment.navController
-            setSupportActionBar(toolbar)
-            val appBarConfiguration = AppBarConfiguration(navController.graph)
-            toolbar.setupWithNavController(navController, appBarConfiguration)
         }
-    }
-
-    fun setToolbarTitle(title: String) {
-        binding.toolbar.title = title
     }
 }

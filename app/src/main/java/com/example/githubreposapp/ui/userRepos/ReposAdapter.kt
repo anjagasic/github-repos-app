@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubreposapp.databinding.RepoItemBinding
 import com.example.githubreposapp.ui.RepoUI
 
-class ReposAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ReposAdapter(private val onRepoClick: (String) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private var items = arrayListOf<RepoUI>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,6 +41,10 @@ class ReposAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(repoUI: RepoUI) = with(binding) {
             tvRepoName.text = repoUI.name
             tvNumOfRepoIssues.text = "Open issues: ${repoUI.openIssuesCount}"
+
+            binding.root.setOnClickListener {
+                onRepoClick(repoUI.name)
+            }
         }
 
     }

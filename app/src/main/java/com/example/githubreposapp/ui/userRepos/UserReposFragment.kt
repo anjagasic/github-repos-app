@@ -9,8 +9,10 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.githubreposapp.databinding.FragmentUserReposBinding
+import com.example.githubreposapp.ui.userRepos.UserReposFragmentDirections.Companion.toRepoDetailsScreen
 import com.example.githubreposapp.utils.UiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,7 +25,7 @@ class UserReposFragment : Fragment() {
 
     private val userReposViewModel: UserReposViewModel by viewModel()
 
-    private val reposAdapter = ReposAdapter()
+    private lateinit var reposAdapter: ReposAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +39,9 @@ class UserReposFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
+            reposAdapter = ReposAdapter { name ->
+                findNavController().navigate(toRepoDetailsScreen(repoName = name))
+            }
             rvRepos.adapter = reposAdapter
             val dividerItemDecoration = DividerItemDecoration(
                 rvRepos.context,

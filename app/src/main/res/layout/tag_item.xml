@@ -4,42 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="20dp">
+    android:paddingVertical="16dp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvRepoName"
+        android:id="@+id/tvTagName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_semi_bold"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/iv_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Hello-World" />
+        tools:text="v4.8.6" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvNumOfRepoIssues"
+        android:id="@+id/tvCommitSha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_issues"
-        android:drawablePadding="8dp"
         android:fontFamily="@font/inter_regular"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/iv_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRepoName"
-        tools:text="Issue number: 12" />
-
-    <ImageView
-        android:id="@+id/iv_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:src="@drawable/ic_arrow_forward"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTagName"
+        tools:text="SHA: f4b8368e81430e3353cb5ad8b781cd044697347" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.GithubReposApp" parent="Base.Theme.GithubReposApp" />
+
+    <style name="Circular">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

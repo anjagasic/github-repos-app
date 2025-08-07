@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivAvatarImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_avatar_default"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/Circular" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFullName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:textColor="#242429"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/tvRepoName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivAvatarImage"
+            app:layout_constraintTop_toTopOf="@id/ivAvatarImage"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Octocat" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvRepoName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:textColor="#6E6D6C"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tvNumOfForks"
+            app:layout_constraintEnd_toEndOf="@id/tvFullName"
+            app:layout_constraintStart_toStartOf="@id/tvFullName"
+            app:layout_constraintTop_toBottomOf="@id/tvFullName"
+            tools:text="git-consortium" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNumOfForks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_forks"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:textColor="#6E6D6C"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivAvatarImage"
+            app:layout_constraintEnd_toStartOf="@id/tvNumOfWatchers"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/tvFullName"
+            app:layout_constraintTop_toBottomOf="@id/tvRepoName"
+            tools:text="Forks: 124" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNumOfWatchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:drawableStart="@drawable/ic_watchers"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:textColor="#6E6D6C"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tvFullName"
+            app:layout_constraintStart_toEndOf="@id/tvNumOfForks"
+            app:layout_constraintTop_toTopOf="@id/tvNumOfForks"
+            tools:text="Watchers: 33" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="30dp"
+            android:background="#334E90F3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNumOfForks" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_tags"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:text="Tags" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:paddingHorizontal="20dp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTags"
+            tools:itemCount="2"
+            tools:listitem="@layout/tag_item" />
+
+        <ProgressBar
+            android:id="@+id/loader"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTags" />
+
+        <include
+            android:id="@+id/noDataView"
+            layout="@layout/no_data_view"
+            android:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
