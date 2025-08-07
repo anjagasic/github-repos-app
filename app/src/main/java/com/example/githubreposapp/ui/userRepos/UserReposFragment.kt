@@ -63,7 +63,7 @@ class UserReposFragment : Fragment() {
                                 noDataView.root.isVisible = false
                                 loader.isVisible = false
                                 rvRepos.isVisible = true
-                                reposAdapter.setRepos(state.data)
+                                reposAdapter.submitList(state.data)
                             }
 
                             is UiState.Error -> {

@@ -1,18 +1,17 @@
 package com.example.githubreposapp.ui.userRepos
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubreposapp.databinding.RepoItemBinding
 import com.example.githubreposapp.ui.RepoUI
 
 class ReposAdapter(private val onRepoClick: (String) -> Unit) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    ListAdapter<RepoUI, ReposAdapter.RepoViewHolder>(DiffCallback()) {
 
-    private var items = arrayListOf<RepoUI>()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         return RepoViewHolder(
             RepoItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -22,17 +21,8 @@ class ReposAdapter(private val onRepoClick: (String) -> Unit) :
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as RepoViewHolder).bind(items[position])
-    }
-
-    override fun getItemCount() = items.size
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setRepos(list: List<RepoUI>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: ReposAdapter.RepoViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
     inner class RepoViewHolder(private val binding: RepoItemBinding) :
@@ -47,5 +37,15 @@ class ReposAdapter(private val onRepoClick: (String) -> Unit) :
             }
         }
 
+    }
+
+    class DiffCallback : DiffUtil.ItemCallback<RepoUI>() {
+        override fun areItemsTheSame(oldItem: RepoUI, newItem: RepoUI): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: RepoUI, newItem: RepoUI): Boolean {
+            return oldItem == newItem
+        }
     }
 }
