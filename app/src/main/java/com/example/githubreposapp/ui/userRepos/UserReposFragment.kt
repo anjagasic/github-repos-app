@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.githubreposapp.R
 import com.example.githubreposapp.databinding.FragmentUserReposBinding
 import com.example.githubreposapp.ui.userRepos.UserReposFragmentDirections.Companion.toRepoDetailsScreen
 import com.example.githubreposapp.utils.UiState
@@ -80,8 +81,8 @@ class UserReposFragment : Fragment() {
     private fun setupNoDataView(errorMessage: String? = null) {
         binding.noDataView.root.isVisible = true
         binding.noDataView.apply {
-            btnTryAgain.text = "Try again"
-            tvTitle.text = "Something went wrong"
+            btnTryAgain.text = getString(R.string.try_again)
+            tvTitle.text = getString(R.string.generic_error_message)
             tvErrorMessage.isVisible = errorMessage != null
             tvErrorMessage.text = errorMessage
 

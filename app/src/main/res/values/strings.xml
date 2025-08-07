@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">GithubReposApp</string>
+    <string name="tags">Tags</string>
+    <string name="number_of_forks">%s forks</string>
+    <string name="number_of_watchers">%s watchers</string>
+    <string name="generic_error_message">Something went wrong</string>
+    <string name="no_tags_message">No tags for selected repo</string>
+    <string name="try_again">Try again</string>
+    <string name="number_of_issues">%s open issues</string>
+    <string name="unknown_user">Unknown User</string>
+    <string name="unknown_repo">Uknown Repo</string>
+    <string name="sha_value">SHA: %s</string>
 </resources>

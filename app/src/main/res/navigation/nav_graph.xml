@@ -13,11 +13,7 @@
 
         <action
             android:id="@+id/toRepoDetailsScreen"
-            app:destination="@id/repoDetailsScreen"
-            app:enterAnim="@anim/slide_right_in"
-            app:exitAnim="@anim/slide_left_out"
-            app:popEnterAnim="@anim/slide_left_in"
-            app:popExitAnim="@anim/slide_right_out" />
+            app:destination="@id/repoDetailsScreen" />
 
     </fragment>
 

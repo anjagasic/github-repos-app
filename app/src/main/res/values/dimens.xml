@@ -1,0 +1,22 @@
+<resources>
+
+    <dimen name="page_margin">20dp</dimen>
+
+    <!--region TYPOGRAPHY-->
+    <dimen name="font_h1">20sp</dimen>
+    <dimen name="font_h2">18sp</dimen>
+    <dimen name="font_p1">16sp</dimen>
+    <dimen name="font_p2">14sp</dimen>
+    <!--endregion-->
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_xxlarge">40dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_xsmall">4dp</dimen>
+    <dimen name="spacing_xxsmall">2dp</dimen>
+    <!--endregion-->
+
+</resources>

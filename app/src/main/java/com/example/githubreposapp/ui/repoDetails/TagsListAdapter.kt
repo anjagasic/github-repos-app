@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubreposapp.R
 import com.example.githubreposapp.databinding.TagItemBinding
 import com.example.githubreposapp.ui.TagUI
 
@@ -24,7 +25,7 @@ class TagsListAdapter : ListAdapter<TagUI, TagsListAdapter.TagViewHolder>(DiffCa
 
         fun bind(tagUI: TagUI) = with(binding) {
             tvTagName.text = tagUI.name
-            tvCommitSha.text = "SHA: ${tagUI.commitSha}"
+            tvCommitSha.text = root.context.getString(R.string.sha_value, tagUI.commitSha)
         }
     }
 

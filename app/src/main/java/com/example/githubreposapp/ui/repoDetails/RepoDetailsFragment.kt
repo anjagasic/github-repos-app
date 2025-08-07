@@ -46,7 +46,7 @@ class RepoDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            tvTags.text = "Tags"
+            tvTags.text = getString(R.string.tags)
             rvTags.adapter = tagsAdapter
             val dividerItemDecoration = DividerItemDecoration(
                 rvTags.context,
@@ -66,7 +66,7 @@ class RepoDetailsFragment : Fragment() {
                                 rvTags.isVisible = state.data.isNotEmpty()
                                 if (state.data.isEmpty()) {
                                     tvTags.isVisible = false
-                                    showNoTagsView(title = "No tags for selected repository")
+                                    showNoTagsView(title = getString(R.string.no_tags_message))
                                 } else {
                                     noDataView.root.isVisible = false
                                     tagsAdapter.submitList(state.data)
@@ -76,7 +76,7 @@ class RepoDetailsFragment : Fragment() {
                             is UiState.Error -> {
                                 tvTags.isVisible = false
                                 showNoTagsView(
-                                    title = "Something went wrong",
+                                    title = getString(R.string.generic_error_message),
                                     message = state.message,
                                     showRetry = true,
                                     onRetry = { repoDetailsViewModel.fetchRepoTags() }
@@ -167,20 +167,20 @@ class RepoDetailsFragment : Fragment() {
     }
 
     private fun setNoUserDataView() = with(binding){
-        tvFullName.text = "Unknown user"
+        tvFullName.text = getString(R.string.unknown_user)
         ivAvatarImage.setImageResource(R.drawable.ic_avatar_default)
     }
 
     private fun setRepoData(data: RepoDetailsUI) = with(binding) {
         tvRepoName.text = data.name
-        tvNumOfForks.text = "${data.forksCount} forks"
-        tvNumOfWatchers.text = "${data.watchersCount} watchers"
+        tvNumOfForks.text = getString(R.string.number_of_forks, data.forksCount.toString())
+        tvNumOfWatchers.text = getString(R.string.number_of_watchers, data.watchersCount.toString())
     }
 
     private fun setNoRepoDataView() = with(binding) {
-        tvRepoName.text = "Unknown Repo"
-        tvNumOfForks.text = "/ forks"
-        tvNumOfWatchers.text = "/ watchers"
+        tvRepoName.text = getString(R.string.unknown_repo)
+        tvNumOfForks.text = getString(R.string.number_of_forks, "/")
+        tvNumOfWatchers.text = getString(R.string.number_of_watchers, "/")
     }
 
     override fun onDestroyView() {

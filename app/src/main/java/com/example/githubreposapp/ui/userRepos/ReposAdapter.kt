@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubreposapp.R
 import com.example.githubreposapp.databinding.RepoItemBinding
 import com.example.githubreposapp.ui.RepoUI
 
@@ -30,7 +31,8 @@ class ReposAdapter(private val onRepoClick: (String) -> Unit) :
 
         fun bind(repoUI: RepoUI) = with(binding) {
             tvRepoName.text = repoUI.name
-            tvNumOfRepoIssues.text = "Open issues: ${repoUI.openIssuesCount}"
+            tvNumOfRepoIssues.text =
+                root.context.getString(R.string.number_of_issues, repoUI.openIssuesCount.toString())
 
             binding.root.setOnClickListener {
                 onRepoClick(repoUI.name)
